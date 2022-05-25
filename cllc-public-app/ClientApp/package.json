@@ -30,6 +30,7 @@
     "@angular/platform-server": "^11.2.14",
     "@angular/router": "^11.2.14",
     "@asymmetrik/ngx-leaflet": "^6.0.1",
+	"@babel/runtime": "^7.14.8",
     "@fortawesome/angular-fontawesome": "^0.8.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
