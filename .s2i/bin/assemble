@@ -32,7 +32,7 @@ else
   if [ -n "${DOTNET_STARTUP_PROJECT}" -a -n "${DOTNET_STARTUP_ASSEMBLY}" ]; then
     echo "error: DOTNET_STARTUP_PROJECT and DOTNET_STARTUP_ASSEMBLY are both set"
     echo "Use DOTNET_STARTUP_PROJECT for source builds or DOTNET_STARTUP_ASSEMBLY for pre-built applications."
-    exit 1
+    #exit 1
   fi
 
   # determine candidate source projects (PROJFILES) or pre-built entrypoint assembly (DOTNET_STARTUP_ASSEMBLY)
@@ -40,7 +40,7 @@ else
     # binary build
     if [ ! -f "${DOTNET_STARTUP_ASSEMBLY}" ]; then
       echo "error: Source does not contain DOTNET_STARTUP_ASSEMBLY: ${DOTNET_STARTUP_ASSEMBLY}"
-      exit 1
+      #exit 1
     fi
   else
     # source build
@@ -54,7 +54,7 @@ else
       elif [ ${#RUNTIMECFGFILES[@]} -gt 1 ]; then
         echo "error: Repository contains multiple startup assemblies"
         echo "You can select the startup assembly by specifying DOTNET_STARTUP_ASSEMBLY."
-        exit 1
+        #exit 1
       fi
     fi
   fi
@@ -95,7 +95,7 @@ else
         done
         echo "Update the '.s2i/environment' file to specify the project you want to publish, for example DOTNET_STARTUP_PROJECT=${PROJFILES[0]}".
       fi
-      exit 1
+      #exit 1
     fi
   fi
 fi
@@ -172,7 +172,7 @@ if [ "$DEV_MODE" == true ]; then
   # fix permissions
   fix-permissions /opt/app-root
 
-  exit 0
+  #exit 0
 fi
 
 if [ "$BUILD_TYPE" == "source" ]; then
@@ -254,7 +254,7 @@ fi
 # check if the assembly used by the script exists
 if [ ! -f "$DOTNET_APP_PATH/${APP_DLL_NAME}" ]; then
   echo "error: Build output does not contain entrypoint assembly: ${APP_DLL_NAME}"
-  exit 1
+  #exit 1
 fi
 
 # Create run script in publish folder
