@@ -1,6 +1,6 @@
 # Get community edition of nodejs v6.x
 FROM angular-app:latest as builder
-FROM nginx:1.18-ubi7
+FROM registry.access.redhat.com/ubi9/nginx-120
 
 #nginx-runtime:latest
 #nginx:1.18-ubi7
