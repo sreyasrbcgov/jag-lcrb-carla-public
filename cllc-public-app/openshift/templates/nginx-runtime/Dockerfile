@@ -1,5 +1,5 @@
 # Use the offical nginx (based on debian)
-FROM nginx:stable
+FROM registry.access.redhat.com/ubi9/nginx-120             #nginx:stable
 
 ENV STI_SCRIPTS_PATH=/usr/libexec/s2i
 

@@ -3,12 +3,10 @@ FROM angular-app:latest as builder
 
 #https://catalog.redhat.com/software/containers/ubi9/nginx-120/61a609f2bfd4a5234d596287?container-tabs=overview
 #section 3.2 from the above link
-FROM registry.access.redhat.com/ubi9/nginx-120
+#FROM registry.access.redhat.com/ubi9/nginx-120
 
-USER 0
+FROM nginx-runtime:latest
 
-chmod -R a+rwx /opt/app-root/src/
-USER 1001
 
 #nginx-runtime:latest
 #nginx:1.18-ubi7
@@ -22,7 +20,3 @@ COPY --from=builder /opt/app-root/src/dist/. /tmp/app/dist/
 # The runtime image "loses" its s2i runtime voodoo when it 
 # is used in a dockerSrategy, which is why the explicit `CMD` is necessary
 CMD  /usr/libexec/s2i/run
-
-EXPOSE 8080
-
-CMD ["sh", "-c", "nginx -g 'daemon off;'"]
