@@ -4,8 +4,8 @@ FROM angular-app:latest as builder
 #https://catalog.redhat.com/software/containers/ubi9/nginx-120/61a609f2bfd4a5234d596287?container-tabs=overview
 #section 3.2 from the above link
 #FROM registry.access.redhat.com/ubi9/nginx-120
-
-FROM nginx-runtime:latest
+# To indicate that the Runtime is based on registry.access.redhat.com/ubi9/nginx-120
+FROM nginx-runtime:120
 
 
 #nginx-runtime:latest
