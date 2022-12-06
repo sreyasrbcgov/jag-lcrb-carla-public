@@ -5,6 +5,10 @@ FROM angular-app:latest as builder
 #section 3.2 from the above link
 FROM registry.access.redhat.com/ubi9/nginx-120
 
+USER 0
+
+chmod -R a+rwx /opt/app-root/src/
+USER 1001
 
 #nginx-runtime:latest
 #nginx:1.18-ubi7
