@@ -3,13 +3,12 @@ FROM angular-app:latest as builder
 
 #https://catalog.redhat.com/software/containers/ubi9/nginx-120/61a609f2bfd4a5234d596287?container-tabs=overview
 #section 3.2 from the above link
-#FROM registry.access.redhat.com/ubi9/nginx-120
-# To indicate that the Runtime is based on registry.access.redhat.com/ubi9/nginx-120
-FROM nginx-runtime:120
+
+# To indicate that the Runtime is based on  begov nginx:1.18-ubi7 image from OpenShift internal repo
+
+FROM nginx-runtime:1.18-ubi7
 
 
-#nginx-runtime:latest
-#nginx:1.18-ubi7
 
 # Copy the build artifacts from the 'builder' image
 # to the distribution folder on the runtime image.

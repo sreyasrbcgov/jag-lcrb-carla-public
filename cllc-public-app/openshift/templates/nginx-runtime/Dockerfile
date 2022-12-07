@@ -1,11 +1,14 @@
 # Use the offical nginx (based on debian)
-FROM registry.access.redhat.com/ubi9/nginx-120             #nginx:stable
+FROM nginx:1.18-ubi7
+
 
 ENV STI_SCRIPTS_PATH=/usr/libexec/s2i
 
+#RUN apt-get update && apt-get add
+USER 0
 # Required for HTTP Basic feature
-RUN apt-get update -y && \
-    apt-get install -y openssl ca-certificates && \
+RUN yum update -y && \
+    yum install -y openssl ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy our OpenShift s2i scripts over to default location
@@ -26,6 +29,11 @@ COPY nginx.conf.template /tmp/
 # - The application artifacts live in /tmp
 # ---------------------------------------------------------------------------------
 RUN chmod -R g+rwx $STI_SCRIPTS_PATH
+RUN mkdir -p /var/cache/nginx/client_temp && \
+    mkdir -p /var/cache/nginx/proxy_temp && \
+    mkdir -p /var/cache/nginx/scgi_temp && \
+    mkdir -p /var/cache/nginx/uwsgi_temp && \
+    mkdir -p /var/cache/nginx/fastcgi_temp
 RUN chmod g+rw /var/cache/nginx \ 
                /var/run \
                /var/log/nginx \
